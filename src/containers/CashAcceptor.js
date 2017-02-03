@@ -8,7 +8,7 @@ class CashAcceptor extends Component{
   constructor(props) {
     super(props);
     
-    this.state = { cashInput: '', cash: ''};
+    this.state = { cashInput: ''};
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -19,7 +19,7 @@ class CashAcceptor extends Component{
 
   onFormSubmit(e) {
     e.preventDefault();
-    this.props.addCash(this.state.cashInput);
+    this.props.addCash(+this.state.cashInput);
     this.setState({cashInput : ''})
     console.log('submit');
   
@@ -30,6 +30,7 @@ class CashAcceptor extends Component{
       <form onSubmit={this.onFormSubmit} className='input-group'>
         <span className='input-group-addon'>{this.props.cash}</span> 
         <input
+          type='number'
           placeholder='Type the amount of money you want to add'
           className='form-control'
           value={this.state.cashInput}
