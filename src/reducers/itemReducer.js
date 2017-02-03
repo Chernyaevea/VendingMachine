@@ -1,9 +1,9 @@
-export default function () {
-  return [
-    { id: 'Coca Cola', price: 30, count: 10 },
-    { id: 'Sprite', price: 32, count: 2 },
-    { id: 'Fanta', price: 12, count: 0 },
-    { id: 'Bonaqua', price: 43, count: 3 },
-    { id: 'Lipton', price: 23, count: 4 }
-  ];
+import { FETCH_ITEMS } from '../actions/index';
+
+export default function(state = [], action) {
+  switch (action.type) {
+    case FETCH_ITEMS:
+      return action.payload
+  }
+  return state;
 }

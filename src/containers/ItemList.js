@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Item from '../components/Item';
-// import { fetchItems } from '../actions/index';
+import { fetchItems } from '../actions/index';
 import { bindActionCreators } from 'redux';
+
+
+const items = [
+  { id: 'Coca Cola', price: 30 , count: 10},
+  { id: 'Sprite', price: 32, count: 2},
+  { id: 'Fanta', price: 12, count: 0},
+  { id: 'Bonaqua', price: 43, count: 3},
+  { id: 'Lipton', price: 23, count: 4}
+];
+
+
 
 class ItemList extends Component{
   constructor(props) {
     super(props);
+    this.props.fetchItems(items);
     this.state = {};
   }
 
@@ -15,7 +27,7 @@ class ItemList extends Component{
       <div className='card-deck'>
        {this.props.items.map((item) => {
          return (
-           <Item id={item.id} value={item.value} count={item.count} />
+           <Item key={item.id} id={item.id} price={item.price} count={item.count} />
          );
        })}
       </div>
@@ -30,8 +42,7 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchItems }, dispatch);
-// }
-
-export default connect(mapStateToProps)(ItemList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchItems: fetchItems }, dispatch);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);

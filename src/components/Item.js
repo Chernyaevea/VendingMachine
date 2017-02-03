@@ -7,8 +7,11 @@ export default class Item extends Component {
   };
 
   render(){
+    console.log(this.props)
     return (
-      <div className='card'>item</div>
+      <div className='card'>
+        {this.props.id}
+      </div>
     )
   }
 }

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import addCash from '../actions/index'
-export default class CashAcceptor extends Component{
+import { addCash } from '../actions/index'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+
+class CashAcceptor extends Component{
   constructor(props) {
     super(props);
+    
     this.state = { cashInput: '', cash: ''};
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
-
+  
   onInputChange(event){
     this.setState({ cashInput : event.target.value });
   }
@@ -15,6 +20,7 @@ export default class CashAcceptor extends Component{
   onFormSubmit(e) {
     e.preventDefault();
     this.props.addCash(this.state.cashInput);
+    this.setState({cashInput : ''})
     console.log('submit');
   
   }
@@ -22,7 +28,7 @@ export default class CashAcceptor extends Component{
   render() {
     return (
       <form onSubmit={this.onFormSubmit} className='input-group'>
-        <span className='input-group-addon'>{this.state.cashInput}</span> 
+        <span className='input-group-addon'>{this.props.cash}</span> 
         <input
           placeholder='Type the amount of money you want to add'
           className='form-control'
@@ -38,3 +44,19 @@ export default class CashAcceptor extends Component{
 
 }
 
+
+function mapStateToProps(state) {
+  // return will be placed to props of CashAcceptor
+  return {
+    cash: state.cash
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  // whenever addCash is called, the result will be 
+  // passed to reducers
+  
+  return bindActionCreators({ addCash: addCash }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CashAcceptor);
