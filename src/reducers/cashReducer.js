@@ -2,8 +2,8 @@ import { ADD_CASH } from '../actions/index';
 
 export default function(state = [], action) {
   switch (action.type) {
-    case ADD_CASH:{
-      return action.payload+ +state}
+    case ADD_CASH:
+      return action.payload+ +state
   }
   return state;
 }

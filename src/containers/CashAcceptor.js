@@ -21,8 +21,6 @@ class CashAcceptor extends Component{
     e.preventDefault();
     this.props.addCash(+this.state.cashInput);
     this.setState({cashInput : ''})
-    console.log('submit');
-  
   }
 
   render() {
