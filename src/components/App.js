@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CashAcceptor from '../containers/CashAcceptor';
 import ItemList from '../containers/ItemList';
-import Item from './Item';
+
 
 
 

@@ -5,3 +5,7 @@
 .card-deck {
   margin: 20px 0px;
 }
+
+.card-title, .card-subtitle {
+  margin: 10px 10px;
+}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Item from '../components/Item';
-import { fetchItems } from '../actions/index';
+import { fetchItems, buyItem } from '../actions/index';
 import { bindActionCreators } from 'redux';
+import Item from './Item';
 
 
 const items = [
@@ -17,17 +17,22 @@ const items = [
 
 class ItemList extends Component{
   constructor(props) {
-    super(props);
-    this.props.fetchItems(items);
-    this.state = {};
+    super(props);  
+    
   }
+
+  componentWillMount() {
+    this.props.fetchItems(items);
+  }
+
+  
 
   render(){
     return (
       <div className='card-deck'>
        {this.props.items.map((item) => {
          return (
-           <Item key={item.id} id={item.id} price={item.price} count={item.count} />
+           <Item key={item.id} id={item.id} price={item.price} count={item.count}/>
          );
        })}
       </div>
